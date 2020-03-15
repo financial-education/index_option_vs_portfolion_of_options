@@ -1,6 +1,8 @@
 #+title: Index Option Value vs Portfolio of Options
 #+author: Matt Brigida, Ph.D.
 #+STARTUP: hideblocks
+#+LATEX_HEADER: \usepackage[citestyle=authoryear-icomp,bibstyle=authoryear, hyperref=true,backref=true,maxcitenames=3,url=true,backend=bibtex]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 #+BEGIN_EXPORT html
@@ -19,11 +21,14 @@
 #+END_COMMENT
 
 
-For simplicity, assume $S_1 = S_2 = ... = S_n$ for stocks 1,...,n.  Further, assume each stock is equally weighted in the index.  We then have $S_P = \sum{i=1}{n}S_i = S_1 = S_2 = .... = S_n$.  
+For simplicity, assume $S_1 = S_2 = ... = S_n$ for stocks 1,...,n.  Let the weight of stock $i$ in the index be $\lambda_i$, where $\lambda_i \in [0, 1]$ and $\sum_{i = 1}^{n}{\lambda_i} = 1$.  We then have $S_P = \sum_{i=1}^{n}{\lambda_iS_i} = S_1 = S_2 = .... = S_n$, where $S_P$ is the index portfolio.
 
-Assume some common strike price $K$ for all options.  
+Assume some common strike price $K$ for all options.  We have $C(S_p, t, K) \leq \sum_{i=1}^{n}{\lambda_i C(S_i, t, K)}$ [Theorem 7, cite:merton1973theory].
 
- 
+/Proof:/  The proof simply uses the convexity of an option payoff $max(0, S - K)$.  
+
+
+The idea here is /diversification/ lowers option values. In fact, this result can be used to prove that an option value is increasing in volatility.
 
 * Interactive
 
@@ -93,3 +98,9 @@ nodes : {
 </script>
 #+END_EXPORT
 
+#+begin_comment
+## only works in latex/pdf export
+\clearpage
+
+\printbibliography
+#+end_comment
