@@ -1,0 +1,95 @@
+#+title: Index Option Value vs Portfolio of Options
+#+author: Matt Brigida, Ph.D.
+#+STARTUP: hideblocks
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+#+BEGIN_EXPORT html
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style type="text/css">
+    #mynetwork {
+      width: 600px;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+  </style>
+#+END_EXPORT
+
+#+BEGIN_COMMENT
+<!-- much of the text and code in the presentation was first written here:  https://github.com/Matt-Brigida/investments/blob/master/chapter2.Rmd -->
+#+END_COMMENT
+
+
+For simplicity, assume $S_1 = S_2 = ... = S_n$ for stocks 1,...,n.  Further, assume each stock is equally weighted in the index.  We then have $S_P = \sum{i=1}{n}S_i = S_1 = S_2 = .... = S_n$.  
+
+Assume some common strike price $K$ for all options.  
+
+ 
+
+* Interactive
+
+
+#+BEGIN_EXPORT html
+<div id="bond_stock"></div>
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes = new vis.DataSet([
+    {id: 1, label: 'Bond'},
+    {id: 2, label: 'Stock'},
+    {id: 3, label: 'Call Option'}
+//    {id: 4, label: 'Node 4'},
+//    {id: 5, label: 'Node 5'}
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {from: 1, to: 3},
+    {from: 2, to: 3},
+//    {from: 2, to: 3},
+//    {from: 2, to: 4},
+//    {from: 2, to: 5},
+//    {from: 3, to: 3}
+  ]);
+
+  // create a network
+  var container = document.getElementById('bond_stock');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+
+
+nodes : {
+      //  shape : 'dot',
+        size : 100,
+      //  color : '#ECBF26', // select color
+
+        font : {
+            size : 20,
+        //    color : '#ffffff'
+        },
+        borderWidth : 2
+    },
+
+
+
+    edges: {
+      font: {
+        align: "top",
+      },
+//      smooth: {
+//        type: "dynamic",
+//        forceDirection:
+//          directionInputValue === "UD" || directionInputValue === "DU"
+//            ? "vertical"
+//            : "horizontal",
+//        roundness: 0.0
+//      },
+      arrows: {
+        to: { enabled: true, scaleFactor: 1, type: "arrow" }
+      }}
+};
+  var network = new vis.Network(container, data, options);
+</script>
+#+END_EXPORT
+
