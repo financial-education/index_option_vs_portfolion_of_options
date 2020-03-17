@@ -25,7 +25,7 @@ For simplicity, assume $S_1 = S_2 = ... = S_n$ for stocks 1,...,n.  Let the weig
 
 Assume some common strike price $K$ for all options.  We have $C(S_p, t, K) \leq \sum_{i=1}^{n}{\lambda_i C(S_i, t, K)}$ [Theorem 7, cite:merton1973theory].
 
-/Proof:/  The proof simply uses the convexity of an option payoff $max(0, S - K)$.  
+/Proof:/  The proof simply uses a dominance argument and the convexity of an option payoff $max(0, S - K)$.  Consider portfolio A which consists solely of an option on the index with $K$ strike.  Let portfolio B consist of $\lambda_i$ warrants on each stock in the index, all again with $K$ strike price.   
 
 
 The idea here is /diversification/ lowers option values. In fact, this result can be used to prove that an option value is increasing in volatility.
